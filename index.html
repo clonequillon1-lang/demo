@@ -96,9 +96,8 @@
             <div class="flex flex-col items-center text-center">
                 <!-- Logo -->
                 <div class="mb-8">
-                    <div class="text-4xl font-bold">
-                        <span class="text-green-500">VIC</span>
-                        <span class="text-white">88</span>
+                    <div class="mb-4">
+                        <img src="https://ad.vic88.asia/wp-content/uploads/2025/07/logo-vic88-1.webp" alt="VIC88 Logo" class="h-16 md:h-20">
                     </div>
                     <div class="text-lg text-yellow-300 mt-2">NHÀ CÁI QUỐC DÂN - DÂN GIÀU NƯỚC MẠNH</div>
                 </div>
@@ -107,23 +106,23 @@
                 <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full max-w-6xl">
                     <!-- Image Slider -->
                     <div class="flex-1 flex flex-col items-center">
-                        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white text-center">
+                        <h1 class="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
                             <span class="text-yellow-400">SIÊU HŨ TÀI XỈU</span><br>
-                            LÊN ĐẾN <span class="text-yellow-400">20 TỶ</span>
+                            <span class="text-xl md:text-2xl">LÊN ĐẾN <span class="text-yellow-400">20 TỶ</span></span>
                         </h1>
                         
-                        <div class="relative mb-6 w-64 h-64 rounded-full border-4 border-yellow-400 shadow-lg overflow-hidden">
+                        <div class="relative mb-4 aspect-square max-w-xs w-full rounded-full border-4 border-yellow-400 shadow-lg overflow-hidden">
                             <div class="slider relative w-full h-full">
-                                <img src="http://static.photos/people/640x360/10" alt="Áo dài đỏ" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-100">
-                                <img src="http://static.photos/people/640x360/11" alt="Casino" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0">
-                                <img src="http://static.photos/people/640x360/12" alt="Cờ bạc" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                                <img src="http://static.photos/sport/640x360/10" alt="Bóng đá 1" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-100">
+                                <img src="http://static.photos/sport/640x360/11" alt="Bóng đá 2" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0">
+                                <img src="http://static.photos/sport/640x360/12" alt="Bóng đá 3" class="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0">
                             </div>
                             <div class="absolute -bottom-4 -right-4 bg-red-600 text-white px-4 py-1 rounded-full font-bold text-sm">
                                 HOT
                             </div>
                         </div>
                         
-                        <button class="cta-btn bg-yellow-400 hover:bg-yellow-500 text-red-800 font-bold py-4 px-8 rounded-full text-xl transition-all duration-300 shadow-lg">
+                        <button class="cta-btn bg-yellow-400 hover:bg-yellow-500 text-red-800 font-bold py-3 px-6 rounded-full text-lg transition-all duration-300 shadow-lg">
                             THAM GIA NGAY <span class="text-red-700">+50K</span>
                         </button>
                     </div>
@@ -205,6 +204,20 @@
         function startImageSlider() {
             const images = document.querySelectorAll('.slider img');
             let currentIndex = 0;
+            
+            // Preload images and maintain aspect ratio
+            images.forEach(img => {
+                img.onload = function() {
+                    const ratio = this.naturalWidth / this.naturalHeight;
+                    if (ratio > 1) {
+                        this.style.width = 'auto';
+                        this.style.height = '100%';
+                    } else {
+                        this.style.width = '100%';
+                        this.style.height = 'auto';
+                    }
+                };
+            });
             
             setInterval(() => {
                 images[currentIndex].classList.remove('opacity-100');
